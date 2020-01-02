@@ -3,7 +3,6 @@ import Card from './Card';
 
 
 const CardList = ({robots}) => {
-    if(true) throw new Error('NOOO');
     return (
         <div>
             {robots===0 && <div>loading...</div>}
