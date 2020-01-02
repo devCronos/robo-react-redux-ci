@@ -2,12 +2,11 @@ import React from 'react';
 import Card from './Card';
 
 
-
 const CardList = ({robots}) => {
-    
-
+    if(true) throw new Error('NOOO');
     return (
         <div>
+            {robots===0 && <div>loading...</div>}
             {robots.map((user, i) => {
                 return <Card 
                 id={robots[i].id} 
@@ -19,5 +18,6 @@ const CardList = ({robots}) => {
         </div>
     )
 }
+
 
 export default CardList;
