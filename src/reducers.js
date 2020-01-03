@@ -30,7 +30,7 @@ export const requestRobots = (state=initialStateRobots, action={}) => {
         case REQUEST_ROBOTS_SUCCESS:
             return {...state, robots:action.payload, isPending:false}
         case REQUEST_ROBOTS_FAILED:
-            return {...state, robots:action.payload, isPending:false}
+            return {...state, error:action.payload, isPending:false}
         default:
             return state;
     }
