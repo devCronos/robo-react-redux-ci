@@ -1,20 +1,35 @@
 version: 2
 jobs:
-    first:
+    build:
         docker:
-            - image: circleci/ruby:2.4.1
+            - image: circleci/node:8.9
         steps:
             - checkout
-            - run: echo "A first hello"
-    second:
+            - run: echo "npm installing"
+            - run: npm install
+            - run: CI=true npm run build 
+    test:
         docker:
-            - image: circleci/ruby:2.4.1
+            - image: circleci/node:8.9
         steps:
             - checkout
-            - run: echo "A second hello"
+            - run: echo "running tests"
+            - run: npm install
+            - run: npm test
+    nothing:
+        docker:
+            - image: circleci/node:8.9
+        steps:
+            - checkout
+            - run: echo "running tests"
+            - run: npm install
+            - run: npm test 
 workflows:
     version: 2
-    team:
+    build_test_lint:
         jobs:
-            - first
-            - second
+            - build
+            - nothing
+            - test:
+                requires:
+                    - nothing
